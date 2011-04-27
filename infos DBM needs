@@ -5,3 +5,14 @@ URL_title,
 classification, 
 flavor, 
 snatch,
+
+
+
+The format should be like this:
+dish_name (XXXX)
+material_list (material_1,material_2,material_3)
+URL (www.somewebsite.com/xxx/xxx...)
+URL_title (XXXX)
+classification (1 or 2 or 3...)
+flavor (1 or 2 or 3 ...)
+snatch (a short of passage..)
