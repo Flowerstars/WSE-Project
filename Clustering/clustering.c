@@ -672,8 +672,8 @@ void version(char* progname)
 
 int main(int argc, char** argv)
 {
-    char *loglevel = "info", *dish_file = NULL, *db_connect_file_path = NULL;
-    char *logfile = "log_dbm.txt";
+    char *loglevel = "err", *dish_file = NULL, *db_connect_file_path = NULL;
+    char *logfile = "log_clustering.txt";
     char *progname, *p;
 
     progname = ((p = strrchr(argv[0], '/')) ? ++p : argv[0]);
@@ -708,6 +708,10 @@ int main(int argc, char** argv)
 		exit(0);
         }
     }
+
+    printf("level: %s   file: %s\n", loglevel, logfile);
+    set_log_level(loglevel);
+    set_log_file_info(logfile);
 
     while (FAILED == init_connect_database(db_connect_file_path))
     {

@@ -152,7 +152,7 @@ int abstract_classifed_info_from(char *dish_file)
 	    fclose(fp);
 
 	    dish_name = strtok_r(tmp_buf, "|", &strtok_state);
-	    if (!strcmp(g_dish_name, "NULL"))
+	    if (!strcmp(dish_name, "NULL"))
             {
                 LOG_ERR(LOG_TYPE_DBM, "There is no dish name in the dish file.\n");
                 return return_value;
@@ -161,7 +161,7 @@ int abstract_classifed_info_from(char *dish_file)
             printf("dish_name: %s\n", g_dish_name);
 
 	    material_list = strtok_r(NULL, "|", &strtok_state);
-	    if (!strcmp(g_material_list, "NULL"))
+	    if (!strcmp(material_list, "NULL"))
 	    {
                 LOG_ERR(LOG_TYPE_DBM, "There is no material list in the dish file.\n");
                 return return_value;
@@ -176,7 +176,7 @@ int abstract_classifed_info_from(char *dish_file)
             
 
 	    URL = strtok_r(NULL, "|", &strtok_state);
-	    if (!strcmp(g_URL, "NULL"))
+	    if (!strcmp(URL, "NULL"))
 	    {
                 LOG_ERR(LOG_TYPE_DBM, "There is no URL in the dish file.\n");
                 return return_value;
@@ -185,7 +185,7 @@ int abstract_classifed_info_from(char *dish_file)
             printf("g_URL: %s\n", g_URL);
 
 	    title = strtok_r(NULL, "|", &strtok_state);
-	    if (!strcmp(g_title, "NULL"))
+	    if (!strcmp(title, "NULL"))
 	    {
                 LOG_ERR(LOG_TYPE_DBM, "There is no title in the dish file.\n");
                 return return_value;
@@ -194,7 +194,7 @@ int abstract_classifed_info_from(char *dish_file)
             printf("g_title: %s\n", g_title);
 
 	    link_relative_list = strtok_r(NULL, "|", &strtok_state);
-	    if (!strcmp(g_link_relative_list, "NULL"))
+	    if (!strcmp(link_relative_list, "NULL"))
 	    {
                 LOG_ERR(LOG_TYPE_DBM, "There is no link relative list in the dish file.\n");
                 return return_value;
@@ -203,7 +203,7 @@ int abstract_classifed_info_from(char *dish_file)
             printf("g_link_relative_list: %s\n", g_link_relative_list);
 
             snatch = strtok_r(NULL, "|", &strtok_state);
-	    if (!strcmp(g_snatch, "NULL"))
+	    if (!strcmp(snatch, "NULL"))
 	    {
                 LOG_ERR(LOG_TYPE_DBM, "There is no snatch in the dish file.\n");
                 return return_value;
@@ -982,7 +982,7 @@ void version(char* progname)
 
 int main(int argc, char** argv)
 {
-    char *loglevel = "info", *dish_file = NULL, *db_connect_file_path = NULL;
+    char *loglevel = "err", *dish_file = NULL, *db_connect_file_path = NULL;
     char *logfile = "log_dbm.txt";
     char *progname, *p;
 
@@ -1018,6 +1018,9 @@ int main(int argc, char** argv)
 		exit(0);
         }
     }
+
+    set_log_level(loglevel);
+    set_log_file_info(logfile);
 
     while (FAILED == init_connect_database(db_connect_file_path))
     {
